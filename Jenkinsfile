@@ -34,16 +34,11 @@ pipeline {
             sh 'docker run -dit --name apache1 -p 9000:80  -v $HOME/web:/usr/local/apache2/htdocs/ httpd'
             }
         }
-        stage('Copy the web application to the container directory') {
-            steps {
-                echo 'Copying web application...'             
-                sh 'cp -r $HOME/WEB-Practice/web/* $HOME/web'
-            }
-        }
+        
         stage('Checking the app') {
             steps {
                 echo 'Testing the web app'
-                sh 'wget http://localhost:9000'
+                sh 'wget http://192.168.18.130:9000'
             }
         }       
     }
